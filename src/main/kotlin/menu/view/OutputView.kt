@@ -1,7 +1,5 @@
 package menu.view
 
-import menu.model.Coach
-
 class OutputView {
     fun printServiceStart() {
         println("점심 메뉴 추천을 시작합니다.")
