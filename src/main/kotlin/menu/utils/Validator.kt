@@ -1,5 +1,6 @@
 package menu.utils
 
+import menu.model.Category.Companion.isMenuExists
 import menu.utils.Constants.MAX_COACH_NAMES_SIZE
 import menu.utils.Constants.MAX_COACH_NAME_LENGTH
 import menu.utils.Constants.MIN_COACH_NAMES_SIZE
@@ -33,5 +34,37 @@ object Validator {
 
     private fun validateCoachNamesDuplicate(coachNames: List<String>) {
         require(coachNames.size == coachNames.toSet().size) { Exception.INVALID_COACH_NAMES_DUPLICATE.getMessage() }
+    }
+
+    fun validateRestrictedMenus(restrictedMenus: String): List<String> {
+        val validRestrictedMenus =
+            restrictedMenus.split(",").map { restrictedFood -> validateRestrictedMenu(restrictedFood) }
+        validateRestrictedMenusSize(validRestrictedMenus)
+        validateRestrictedMenusDuplicate(validRestrictedMenus)
+        return validRestrictedMenus
+    }
+
+    private fun validateRestrictedMenu(restrictedMenu: String): String {
+        if (restrictedMenu.isNotBlank()) {
+            validateRestrictedMenuFormat(restrictedMenu)
+            validateRestrictedMenuExists(restrictedMenu)
+        }
+        return restrictedMenu
+    }
+
+    private fun validateRestrictedMenuFormat(restrictedMenu: String) {
+        require(restrictedMenu[0] != ' ' && restrictedMenu[restrictedMenu.length - 1] != ' ') { Exception.INVALID_RESTRICTED_MENU_FORMAT.getMessage() }
+    }
+
+    private fun validateRestrictedMenuExists(restrictedMenu: String) {
+        require(isMenuExists(restrictedMenu)) { Exception.INVALID_RESTRICTED_MENU_EXISTS.getMessage() }
+    }
+
+    private fun validateRestrictedMenusSize(restrictedMenus: List<String>) {
+        require(restrictedMenus.size in 0..2) { Exception.INVALID_RESTRICTED_MENUS_SIZE.getMessage() }
+    }
+
+    private fun validateRestrictedMenusDuplicate(restrictedMenus: List<String>) {
+        require(restrictedMenus.size == restrictedMenus.toSet().size) { Exception.INVALID_RESTRICTED_MENUS_DUPLICATE.getMessage() }
     }
 }
