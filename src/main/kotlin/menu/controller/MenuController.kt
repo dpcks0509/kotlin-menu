@@ -8,6 +8,6 @@ class MenuController {
     private val outputView = OutputView()
 
     fun run() {
-
+        outputView.printServiceStart()
     }
 }
