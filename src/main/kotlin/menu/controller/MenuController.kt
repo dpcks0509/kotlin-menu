@@ -9,5 +9,6 @@ class MenuController {
 
     fun run() {
         outputView.printServiceStart()
+        val coachNames = inputView.readCoachNames()
     }
 }
