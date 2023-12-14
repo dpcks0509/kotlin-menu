@@ -1,5 +1,11 @@
 package menu.model
 
+import menu.utils.Constants.ASIAN_NUMBER
+import menu.utils.Constants.CHINESE_NUMBER
+import menu.utils.Constants.JAPANESE_NUMBER
+import menu.utils.Constants.KOREAN_NUMBER
+import menu.utils.Constants.WESTERN_NUMBER
+
 enum class Category(private val menus: List<String>) {
     JAPANESE(
         listOf(
@@ -40,6 +46,17 @@ enum class Category(private val menus: List<String>) {
                 }
             }
             return false
+        }
+
+        fun getMenusByCategoryNumber(categoryNumber: Int): List<String> {
+            val category = when (categoryNumber) {
+                JAPANESE_NUMBER -> JAPANESE
+                KOREAN_NUMBER -> KOREAN
+                CHINESE_NUMBER -> CHINESE
+                ASIAN_NUMBER -> ASIAN
+                else -> WESTERN
+            }
+            return category.menus
         }
     }
 }

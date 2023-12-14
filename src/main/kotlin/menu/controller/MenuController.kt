@@ -1,6 +1,7 @@
 package menu.controller
 
 import menu.model.Coach
+import menu.model.Service
 import menu.view.InputView
 import menu.view.OutputView
 
@@ -15,5 +16,6 @@ class MenuController {
             val restrictedFoods = inputView.readRestrictedFoods(coachName)
             Coach(coachName, restrictedFoods)
         }
+        val service = Service(coaches)
     }
 }
