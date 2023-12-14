@@ -12,4 +12,8 @@ object Constants {
     const val CHINESE_NUMBER = 3
     const val ASIAN_NUMBER = 4
     const val WESTERN_NUMBER = 5
+
+    const val SEPARATOR = " | "
+    const val PREFIX = "[ "
+    const val POSTFIX = " ]"
 }

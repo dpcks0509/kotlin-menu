@@ -1,12 +1,14 @@
 package menu.model
 
 class Coach(private val name: String, private val restrictedMenus: List<String>) {
-    private var lunchMenus = listOf<String>()
+    private var lunchMenus = mutableListOf<String>()
 
-    fun setLunchMenus(lunchMenus: List<String>) {
-        this.lunchMenus = lunchMenus
+    fun setLunchMenu(lunchMenu: String) {
+        lunchMenus.add(lunchMenu)
     }
 
     fun getName() = name
     fun getRestrictedMenus() = restrictedMenus
+
+    fun getLunchMenus() = lunchMenus
 }

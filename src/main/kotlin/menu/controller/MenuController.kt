@@ -17,5 +17,6 @@ class MenuController {
             Coach(coachName, restrictedFoods)
         }
         val service = Service(coaches)
+        outputView.printServiceResult(service.getServiceResult())
     }
 }
